@@ -31,7 +31,7 @@ namespace WindowsForms_Modulzaro_epuletek
             {
                 return;
             }
-
+            
         }
 
         private void Form_Csaladihaz_Load(object sender, EventArgs e)

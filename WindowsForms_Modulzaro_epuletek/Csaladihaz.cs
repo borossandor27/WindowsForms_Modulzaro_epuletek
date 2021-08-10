@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsForms_Modulzaro_epuletek
 {
-    internal class Csaladihaz : Epulet, Kiegeszites
+    internal class Csaladihaz : Epulet, Arbecsles, CSV
     {
         int ottelok;
         bool vanGarazs;
@@ -23,14 +23,14 @@ namespace WindowsForms_Modulzaro_epuletek
             TetoTipusa = (TetoTipusa)tetoTipusa;
         }
 
-        public void arBecsles()
+         public string toCSV()
         {
-            throw new NotImplementedException();
+            return string.Join(";", base.epuletTipus, base.Cim, base.Alapterulet, base.Epitesianyag, base.MunkaKezdete.ToString("yyyy:MM:dd"), base.MunkaVege.ToString("yyyy:MM:dd"), ottelok, VanGarazs.ToString());
         }
 
-        public void toCSV()
+        public double arBecsles()
         {
-            throw new NotImplementedException();
+            return Alapterulet * ottelok * 10000;
         }
     }
 }

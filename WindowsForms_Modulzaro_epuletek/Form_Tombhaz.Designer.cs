@@ -58,6 +58,7 @@ namespace WindowsForms_Modulzaro_epuletek
             this.button_Listaba_rakja_a_tombhazat.TabIndex = 25;
             this.button_Listaba_rakja_a_tombhazat.Text = "Hozzáadja a listához";
             this.button_Listaba_rakja_a_tombhazat.UseVisualStyleBackColor = true;
+            this.button_Listaba_rakja_a_tombhazat.Click += new System.EventHandler(this.button_Listaba_rakja_a_tombhazat_Click);
             // 
             // comboBox_Lakasfenntartas_tipusa
             // 

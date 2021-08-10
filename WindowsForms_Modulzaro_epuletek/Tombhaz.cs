@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsForms_Modulzaro_epuletek
 {
-    class Tombhaz :Epulet,Kiegeszites
+    class Tombhaz :Epulet, Arbecsles, CSV
     {
         readonly int lakasokSzama;
         LakasfenntartasTipus lakasfenntartasTipus;
@@ -25,14 +25,14 @@ namespace WindowsForms_Modulzaro_epuletek
             LakasfenntartasTipus = (LakasfenntartasTipus)lakasfenntartasTipus;
         }
 
-        public void toCSV()
+        public string toCSV()
         {
-            throw new NotImplementedException();
+            return string.Join(";", base.epuletTipus, base.Cim, base.Alapterulet, base.Epitesianyag, base.MunkaKezdete.ToString("yyyy:MM:dd"), base.MunkaVege.ToString("yyyy:MM:dd"), lakasokSzama, (LakasfenntartasTipus)LakasfenntartasTipus, vanLift.ToString());
         }
 
-        public void arBecsles()
+        public double arBecsles()
         {
-            throw new NotImplementedException();
+            return Alapterulet * lakasokSzama * 8000 + (vanLift ? 100000 : 0);
         }
     }
 }

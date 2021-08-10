@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WindowsForms_Modulzaro_epuletek
 {
-    interface Kiegeszites
+    interface CSV
     {
-        void toCSV();
-        void arBecsles();
+        string toCSV();
+
     }
 }

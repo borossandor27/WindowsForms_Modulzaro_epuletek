@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WindowsForms_Modulzaro_epuletek
 {
-    class Epulet
+    class Epulet 
     {
-        readonly EpuletTipus epuletTipus;
+        public readonly EpuletTipus epuletTipus;
         string cim;
         int alapterulet;
         private readonly EpitesiAnyag epitesianyag;
@@ -23,9 +23,10 @@ namespace WindowsForms_Modulzaro_epuletek
         public DateTime MunkaVege { 
             get => munkaVege;
             set {
-                if (value < MunkaKezdete)
+                if (value.Date < MunkaKezdete.Date)
                     throw new ArgumentException("A munkát nem lehet a kezdés előtt befejezni!");
-                munkaVege = value; } 
+                munkaVege = value; 
+            } 
         }
         public int Alapterulet { 
             get => alapterulet; 
@@ -44,6 +45,10 @@ namespace WindowsForms_Modulzaro_epuletek
             MunkaKezdete = munkaKezdete;
             MunkaVege = munkaVege;
             Alapterulet = alapterulet;
+        }
+        public override string ToString()
+        {
+            return cim;
         }
     }
 }

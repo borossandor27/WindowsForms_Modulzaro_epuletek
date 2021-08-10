@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arbecsles.cs" />
     <Compile Include="Csaladihaz.cs" />
+    <Compile Include="CSV.cs" />
     <Compile Include="EpitesiAnyag.cs" />
     <Compile Include="Epulet.cs" />
     <Compile Include="EpuletTipus.cs" />
@@ -62,7 +64,6 @@
     <Compile Include="Form_Tombhaz.Designer.cs">
       <DependentUpon>Form_Tombhaz.cs</DependentUpon>
     </Compile>
-    <Compile Include="Kiegeszites.cs" />
     <Compile Include="LakasfenntartasTipus.cs" />
     <Compile Include="Form_Csaladihaz.cs">
       <SubType>Form</SubType>

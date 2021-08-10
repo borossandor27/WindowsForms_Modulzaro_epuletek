@@ -8,15 +8,13 @@ namespace WindowsForms_Modulzaro_epuletek
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
+        public static Form_Nyito form_Nyito = null;
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Nyito());
+            form_Nyito = new Form_Nyito();
+            Application.Run(form_Nyito);
         }
     }
 }

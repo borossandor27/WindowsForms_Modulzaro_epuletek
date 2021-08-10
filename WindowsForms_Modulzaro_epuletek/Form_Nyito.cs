@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace WindowsForms_Modulzaro_epuletek
 {
@@ -22,6 +23,18 @@ namespace WindowsForms_Modulzaro_epuletek
             if (listBox_Epuletek.SelectedIndex<0)
             {
                 return;
+            }
+            if (listBox_Epuletek.SelectedItem.GetType() == typeof(Csaladihaz))
+            {
+                Csaladihaz kiv = (Csaladihaz)listBox_Epuletek.SelectedItem;
+                textBox_Epulet_cime.Text = kiv.Cim;
+                textBox_BecsultAr.Text = kiv.arBecsles().ToString("#,##0");
+            }
+            else
+            {
+                Tombhaz kiv = (Tombhaz)listBox_Epuletek.SelectedItem;
+                textBox_Epulet_cime.Text = kiv.Cim;
+                textBox_BecsultAr.Text = kiv.arBecsles().ToString("#,##0");
             }
         }
 
@@ -41,6 +54,38 @@ namespace WindowsForms_Modulzaro_epuletek
         {
  
             
+        }
+
+        private void Form_Nyito_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult valasztas = MessageBox.Show("Valóban ki akar lépni?", "A lista tartalma fájlba íródik!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DialogResult.Yes == valasztas) 
+            {
+                csv_fajlba_irja_a_listat();
+                //Application.Exit();
+            }
+            else if(DialogResult.No == valasztas)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void csv_fajlba_irja_a_listat()
+        {
+            using (StreamWriter sw = new StreamWriter("epuletek.csv"))
+            {
+                foreach (var item in listBox_Epuletek.Items)
+                {
+                    if (item.GetType() == typeof(Csaladihaz))
+                    {
+                        sw.WriteLine(((Csaladihaz)item).toCSV());
+                    }
+                    else
+                    {
+                        sw.WriteLine(((Tombhaz)item).toCSV());
+                    }
+                }
+            }
         }
     }
 }

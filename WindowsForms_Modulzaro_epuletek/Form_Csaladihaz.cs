@@ -31,7 +31,17 @@ namespace WindowsForms_Modulzaro_epuletek
             {
                 return;
             }
-            
+            Csaladihaz uj = new Csaladihaz(EpuletTipus.Családiház, textBox_Cim.Text, comboBox_Epitesi_anyag.SelectedIndex, dateTimePicker_Munka_kezdete.Value, dateTimePicker_Munka_vege.Value, (int)numericUpDown_Alapterulet.Value, (int)numericUpDown_Ottelok_szama.Value, checkBox_Garazs.Checked, comboBox_Teto_tipusa.SelectedIndex);
+            Program.form_Nyito.listBox_Epuletek.Items.Add(uj);
+            textBox_Cim.Text = "";
+            numericUpDown_Alapterulet.Value = 20;
+            comboBox_Epitesi_anyag.SelectedIndex = -1;
+            dateTimePicker_Munka_kezdete.Value = DateTime.Now;
+            dateTimePicker_Munka_vege.Value = DateTime.Now;
+            numericUpDown_Ottelok_szama.Value = 1;
+            checkBox_Garazs.Checked = false;
+            comboBox_Teto_tipusa.SelectedIndex = -1;
+
         }
 
         private void Form_Csaladihaz_Load(object sender, EventArgs e)

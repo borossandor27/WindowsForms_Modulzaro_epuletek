@@ -35,6 +35,8 @@ namespace WindowsForms_Modulzaro_epuletek
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.újCsaládiházToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.újTömbházToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.törlésToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.módosításToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_Epulet_cime = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,11 +44,13 @@ namespace WindowsForms_Modulzaro_epuletek
             this.listBox_Esedekes_befejezes = new System.Windows.Forms.ListBox();
             this.button_Esedekes_befejezesek_listat_frissit = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox_Epulet_adat = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox_alapterulet = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.groupBox_Epulet_adat.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,11 +63,14 @@ namespace WindowsForms_Modulzaro_epuletek
             this.listBox_Epuletek.Size = new System.Drawing.Size(173, 215);
             this.listBox_Epuletek.TabIndex = 0;
             this.listBox_Epuletek.SelectedIndexChanged += new System.EventHandler(this.listBox_Epuletek_SelectedIndexChanged);
+            this.listBox_Epuletek.DoubleClick += new System.EventHandler(this.listBox_Epuletek_DoubleClick);
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.törlésToolStripMenuItem,
+            this.módosításToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(711, 24);
@@ -93,10 +100,24 @@ namespace WindowsForms_Modulzaro_epuletek
             this.újTömbházToolStripMenuItem.Text = "Új tömbház";
             this.újTömbházToolStripMenuItem.Click += new System.EventHandler(this.újTömbházToolStripMenuItem_Click);
             // 
+            // törlésToolStripMenuItem
+            // 
+            this.törlésToolStripMenuItem.Name = "törlésToolStripMenuItem";
+            this.törlésToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.törlésToolStripMenuItem.Text = "Törlés";
+            this.törlésToolStripMenuItem.Click += new System.EventHandler(this.törlésToolStripMenuItem_Click);
+            // 
+            // módosításToolStripMenuItem
+            // 
+            this.módosításToolStripMenuItem.Name = "módosításToolStripMenuItem";
+            this.módosításToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.módosításToolStripMenuItem.Text = "Módosítás";
+            this.módosításToolStripMenuItem.Click += new System.EventHandler(this.módosításToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 15);
+            this.label1.Location = new System.Drawing.Point(25, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 2;
@@ -104,15 +125,16 @@ namespace WindowsForms_Modulzaro_epuletek
             // 
             // textBox_Epulet_cime
             // 
-            this.textBox_Epulet_cime.Location = new System.Drawing.Point(13, 32);
+            this.textBox_Epulet_cime.Location = new System.Drawing.Point(25, 53);
             this.textBox_Epulet_cime.Name = "textBox_Epulet_cime";
+            this.textBox_Epulet_cime.ReadOnly = true;
             this.textBox_Epulet_cime.Size = new System.Drawing.Size(187, 20);
             this.textBox_Epulet_cime.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 71);
+            this.label2.Location = new System.Drawing.Point(25, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 13);
             this.label2.TabIndex = 4;
@@ -120,8 +142,9 @@ namespace WindowsForms_Modulzaro_epuletek
             // 
             // textBox_BecsultAr
             // 
-            this.textBox_BecsultAr.Location = new System.Drawing.Point(16, 99);
+            this.textBox_BecsultAr.Location = new System.Drawing.Point(25, 109);
             this.textBox_BecsultAr.Name = "textBox_BecsultAr";
+            this.textBox_BecsultAr.ReadOnly = true;
             this.textBox_BecsultAr.Size = new System.Drawing.Size(184, 20);
             this.textBox_BecsultAr.TabIndex = 5;
             this.textBox_BecsultAr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -134,6 +157,7 @@ namespace WindowsForms_Modulzaro_epuletek
             this.listBox_Esedekes_befejezes.Name = "listBox_Esedekes_befejezes";
             this.listBox_Esedekes_befejezes.Size = new System.Drawing.Size(194, 173);
             this.listBox_Esedekes_befejezes.TabIndex = 6;
+            this.listBox_Esedekes_befejezes.DoubleClick += new System.EventHandler(this.listBox_Esedekes_befejezes_DoubleClick);
             // 
             // button_Esedekes_befejezesek_listat_frissit
             // 
@@ -155,18 +179,20 @@ namespace WindowsForms_Modulzaro_epuletek
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Karbantartásra váró épületek";
             // 
-            // groupBox2
+            // groupBox_Epulet_adat
             // 
-            this.groupBox2.Controls.Add(this.textBox_Epulet_cime);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox_BecsultAr);
-            this.groupBox2.Location = new System.Drawing.Point(214, 78);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(239, 158);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Kiválasztott épület";
+            this.groupBox_Epulet_adat.Controls.Add(this.label3);
+            this.groupBox_Epulet_adat.Controls.Add(this.textBox_Epulet_cime);
+            this.groupBox_Epulet_adat.Controls.Add(this.label1);
+            this.groupBox_Epulet_adat.Controls.Add(this.label2);
+            this.groupBox_Epulet_adat.Controls.Add(this.textBox_alapterulet);
+            this.groupBox_Epulet_adat.Controls.Add(this.textBox_BecsultAr);
+            this.groupBox_Epulet_adat.Location = new System.Drawing.Point(216, 60);
+            this.groupBox_Epulet_adat.Name = "groupBox_Epulet_adat";
+            this.groupBox_Epulet_adat.Size = new System.Drawing.Size(239, 205);
+            this.groupBox_Epulet_adat.TabIndex = 9;
+            this.groupBox_Epulet_adat.TabStop = false;
+            this.groupBox_Epulet_adat.Text = "Kiválasztott épület";
             // 
             // groupBox3
             // 
@@ -179,13 +205,31 @@ namespace WindowsForms_Modulzaro_epuletek
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "A mai nap befejezendő épületek";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 150);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Alapterülete";
+            // 
+            // textBox_alapterulet
+            // 
+            this.textBox_alapterulet.Location = new System.Drawing.Point(25, 166);
+            this.textBox_alapterulet.Name = "textBox_alapterulet";
+            this.textBox_alapterulet.ReadOnly = true;
+            this.textBox_alapterulet.Size = new System.Drawing.Size(184, 20);
+            this.textBox_alapterulet.TabIndex = 5;
+            this.textBox_alapterulet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // Form_Nyito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(711, 290);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox_Epulet_adat);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -197,8 +241,8 @@ namespace WindowsForms_Modulzaro_epuletek
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox_Epulet_adat.ResumeLayout(false);
+            this.groupBox_Epulet_adat.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -219,8 +263,12 @@ namespace WindowsForms_Modulzaro_epuletek
         private System.Windows.Forms.ListBox listBox_Esedekes_befejezes;
         private System.Windows.Forms.Button button_Esedekes_befejezesek_listat_frissit;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox_Epulet_adat;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ToolStripMenuItem törlésToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem módosításToolStripMenuItem;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox_alapterulet;
     }
 }
 

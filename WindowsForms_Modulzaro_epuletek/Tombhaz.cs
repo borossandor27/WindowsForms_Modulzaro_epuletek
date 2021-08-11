@@ -27,7 +27,7 @@ namespace WindowsForms_Modulzaro_epuletek
 
         public string toCSV()
         {
-            return string.Join(";", base.epuletTipus, base.Cim, base.Alapterulet, base.Epitesianyag, base.MunkaKezdete.ToString("yyyy:MM:dd"), base.MunkaVege.ToString("yyyy:MM:dd"), lakasokSzama, (LakasfenntartasTipus)LakasfenntartasTipus, vanLift.ToString());
+            return string.Join(";", base.epuletTipus, base.Cim, base.Alapterulet, base.Epitesianyag, base.MunkaKezdete.ToString("yyyy-MM-dd"), base.MunkaVege.ToString("yyyy-MM-dd"),Alapterulet, lakasokSzama, vanLift.ToString(), (LakasfenntartasTipus)LakasfenntartasTipus);
         }
 
         public double arBecsles()

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace WindowsForms_Modulzaro_epuletek
 {
-    class Epulet 
+    abstract class Epulet 
     {
         public readonly EpuletTipus epuletTipus;
         string cim;
         int alapterulet;
-        private readonly EpitesiAnyag epitesianyag;
+        private readonly EpitesiAnyag epitesiAnyag;
         DateTime munkaKezdete;
         DateTime munkaVege;
 
         public string Cim { get => cim; }
 
-        public EpitesiAnyag Epitesianyag => epitesianyag;
+        public EpitesiAnyag Epitesianyag => epitesiAnyag;
 
         public DateTime MunkaKezdete { get => munkaKezdete; set => munkaKezdete = value; }
         public DateTime MunkaVege { 
@@ -40,7 +40,7 @@ namespace WindowsForms_Modulzaro_epuletek
         public Epulet(EpuletTipus epuletTipus, string cim, int epitesianyag, DateTime munkaKezdete, DateTime munkaVege, int alapterulet)
         {
             this.cim = cim;
-            this.epitesianyag = (EpitesiAnyag)epitesianyag;
+            this.epitesiAnyag = (EpitesiAnyag)epitesianyag;
             this.epuletTipus = epuletTipus;
             MunkaKezdete = munkaKezdete;
             MunkaVege = munkaVege;
@@ -48,7 +48,7 @@ namespace WindowsForms_Modulzaro_epuletek
         }
         public override string ToString()
         {
-            return cim;
+            return $"{cim} ({(epuletTipus==EpuletTipus.Családiház?"cs":"tömb")})";
         }
     }
 }
